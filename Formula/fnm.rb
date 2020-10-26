@@ -27,12 +27,4 @@ class Fnm < Formula
     system("#{bin}/fnm", "install", "12.0.0")
     assert_match "v12.0.0", shell_output("#{bin}/fnm exec --using=12.0.0 -- node --version")
   end
-
-  def source_for_shell
-    if preferred == :fish
-      "fnm env --multi | source"
-    else
-      'eval "$(fnm env --multi)"'
-    end
-  end
 end
