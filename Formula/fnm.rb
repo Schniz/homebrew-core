@@ -23,21 +23,6 @@ class Fnm < Formula
     (zsh_completion/"_fnm").write Utils.safe_popen_read("#{bin}/fnm", "completions", "--shell=zsh")
   end
 
-  def caveats
-    <<~CAVEATS
-      Thanks for installing fnm!
-      The last step for making fnm work is to run it on the shell startup, using the `fnm env` command.
-
-      In order to complete the installation, please add the following to your shell profile:
-
-        # fnm
-        #{source_for_shell}
-
-      Homebrew tells us that #{preferred} is your preferred shell,
-      and your shell profile is at #{shell_profile.inspect}, if that helps 😇
-    CAVEATS
-  end
-
   test do
     system("#{bin}/fnm", "install", "12.0.0")
     assert_match "v12.0.0", shell_output("#{bin}/fnm exec --using=12.0.0 -- node --version")
